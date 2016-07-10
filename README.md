@@ -28,7 +28,7 @@ import {Codemirror} from 'ng2-ckeditor';
 @Component({
   selector: 'sample',
   directives: [Codemirror],
-  template: `<codemirror [(ngModel)]="code" [config]="{uiColor: '#99000'}"></codemirror>`
+  template: `<codemirror [(ngModel)]="code" [config]="{...}"></codemirror>`
 })
 export class Sample{
   constructor(){
@@ -39,7 +39,7 @@ export class Sample{
 
 Other samples :
 - ES2016 and JSPM : https://github.com/chymz/angular2-jspm-seed/tree/ng2-codemirror
-- Plunker : 
+- Plunker : https://embed.plnkr.co/npuRw0/
 
 ### <a name="config"></a>Configuration
 
