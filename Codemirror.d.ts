@@ -1,26 +1,25 @@
 // Imports
 import {
-    NgZone,
-    EventEmitter
+  EventEmitter
 } from '@angular/core';
 import {ControlValueAccessor} from '@angular/forms';
 
 /**
- * CKEditor component
- */
+* CKEditor component
+*/
 export declare class Codemirror implements ControlValueAccessor {
+  
+  value:any;
+  change:EventEmitter<any>;
 
-    value:any;
-    change:EventEmitter<any>;
+  constructor();
+  codemirrorInit(config:any):void;
+  updateValue(value:String):void;
 
-    constructor(zone:NgZone);
-    codemirrorInit(config:any):void;
-    updateValue(value:String):void;
-
-    // ControlValueAccessor
-    writeValue(value:any):void;
-    onChange(_:any):void;
-    registerOnChange(fn:Function):void;
-    registerOnTouched(fn:Function):void;
+  // ControlValueAccessor
+  writeValue(value:any):void;
+  onChange(_:any):void;
+  registerOnChange(fn:Function):void;
+  registerOnTouched(fn:Function):void;
 
 }
