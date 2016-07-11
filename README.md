@@ -19,11 +19,11 @@ CodeMirror need to be accessible by `import 'codemirror'`
 
 Then you need to include base CSS of codemirror located in `codemirror/lib/codemirror.css`
 
-### <a name="sample"></a>Sample (ES6)
+### <a name="sample"></a>Sample (ES2016+)
 
 ```javascript
 import {Component} from 'angular2/core';
-import {Codemirror} from 'ng2-ckeditor';
+import {Codemirror} from 'ng2-codemirror';
 
 @Component({
   selector: 'sample',
