@@ -6,7 +6,7 @@ Use the [CodeMirror (5.x)](http://codemirror.net/) code editor in your Angular2 
 
 - Include Codemirror javascript files in your application (with files for modes)
 - Install ng2-codemirror
-  - JSPM/Gihtub : `jspm install ng2-ckeditor=github:chymz/ng2-codemirror`
+  - JSPM/Gihtub : `jspm install ng2-codemirror=github:chymz/ng2-codemirror`
   - JSPM/NPM : `jspm install npm:ng2-codemirror`
   - NPM : `npm install ng2-codemirror`
 
