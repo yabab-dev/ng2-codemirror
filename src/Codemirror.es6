@@ -9,7 +9,7 @@ import {
   Provider,
   forwardRef
 } from '@angular/core';
-import {NgControl, NG_VALUE_ACCESSOR} from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import CodeMirror from 'codemirror';
 
 // Control Value accessor provider
@@ -86,7 +86,7 @@ export class Codemirror {
   updateValue(value){
     this.value = value;
     this.onChange(value);
-    this._onTouchedCallback();
+    this.onTouched();
     this.change.emit(value);
   }
 
@@ -103,6 +103,4 @@ export class Codemirror {
   onTouched(){}
   registerOnChange(fn){this.onChange = fn;}
   registerOnTouched(fn){this.onTouched = fn;}
-  _onChangeCallback(_){}
-  _onTouchedCallback(){}
 }

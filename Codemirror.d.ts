@@ -2,13 +2,13 @@
 import {
   EventEmitter
 } from '@angular/core';
-import {ControlValueAccessor} from '@angular/forms';
+import { ControlValueAccessor } from '@angular/forms';
 
 /**
 * CKEditor component
 */
 export declare class Codemirror implements ControlValueAccessor {
-  
+
   value:any;
   change:EventEmitter<any>;
 
