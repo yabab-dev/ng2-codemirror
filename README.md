@@ -21,13 +21,26 @@ Then you need to include base CSS of codemirror located in `codemirror/lib/codem
 
 ### <a name="sample"></a>Sample (ES2016+)
 
+Include `CodemirrorModule` in your main module :
+
+```javascript
+import {CodemirrorModule} from 'ng2-codemirror';
+
+@NgModule({
+  // ...
+  imports:      [
+    CodemirrorModule
+  ],
+  // ...
+})
+export class AppModule { }
+```
+
 ```javascript
 import {Component} from 'angular2/core';
-import {Codemirror} from 'ng2-codemirror';
 
 @Component({
   selector: 'sample',
-  directives: [Codemirror],
   template: `<codemirror [(ngModel)]="code" [config]="{...}"></codemirror>`
 })
 export class Sample{
@@ -38,8 +51,8 @@ export class Sample{
 ```
 
 Other samples :
-- ES2016 and JSPM : https://github.com/chymz/angular2-jspm-seed/tree/ng2-codemirror
-- Plunker : https://embed.plnkr.co/npuRw0/
+- ES2016 and JSPM : https://github.com/chymz/angular2-jspm-seed/tree/ng2-codemirror (outdated)
+- Plunker : https://embed.plnkr.co/npuRw0/ (outdated)
 
 ### <a name="config"></a>Configuration
 

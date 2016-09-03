@@ -5,7 +5,7 @@ import {
 import { ControlValueAccessor } from '@angular/forms';
 
 /**
-* CKEditor component
+* Codemirror component
 */
 export declare class Codemirror implements ControlValueAccessor {
 

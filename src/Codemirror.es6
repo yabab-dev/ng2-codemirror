@@ -1,25 +1,16 @@
 // Imports
 import {
+  NgModule,
   Component,
   Input,
   Output,
   ElementRef,
   ViewChild,
   EventEmitter,
-  Provider,
   forwardRef
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import CodeMirror from 'codemirror';
-
-// Control Value accessor provider
-const CODEMIRROR_CONTROL_VALUE_ACCESSOR = new Provider(
-  NG_VALUE_ACCESSOR,
-  {
-    useExisting: forwardRef(() => Codemirror),
-    multi: true
-  }
-);
 
 /**
  * CodeMirror component
@@ -28,10 +19,16 @@ const CODEMIRROR_CONTROL_VALUE_ACCESSOR = new Provider(
  */
 @Component({
   selector: 'codemirror',
-  providers: [CODEMIRROR_CONTROL_VALUE_ACCESSOR],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => CodemirrorComponent),
+      multi: true
+    }
+  ],
   template: `<textarea #host></textarea>`,
 })
-export class Codemirror {
+export class CodemirrorComponent {
 
   @Input() config;
 
@@ -94,9 +91,9 @@ export class Codemirror {
    * Implements ControlValueAccessor
    */
   writeValue(value){
-    this._value = value;
+    this._value = value || '';
     if (this.instance) {
-      this.instance.setValue(value || '');
+      this.instance.setValue(this._value);
     }
   }
   onChange(_){}
@@ -104,3 +101,16 @@ export class Codemirror {
   registerOnChange(fn){this.onChange = fn;}
   registerOnTouched(fn){this.onTouched = fn;}
 }
+
+/**
+ * CodemirrorModule
+ */
+@NgModule({
+  declarations: [
+    CodemirrorComponent,
+  ],
+  exports: [
+    CodemirrorComponent,
+  ]
+})
+export class CodemirrorModule{}
