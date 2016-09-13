@@ -7,7 +7,7 @@ import { ControlValueAccessor } from '@angular/forms';
 /**
 * Codemirror component
 */
-export declare class Codemirror implements ControlValueAccessor {
+export declare class CodemirrorComponent implements ControlValueAccessor {
 
   value:any;
   change:EventEmitter<any>;
@@ -23,3 +23,5 @@ export declare class Codemirror implements ControlValueAccessor {
   registerOnTouched(fn:Function):void;
 
 }
+
+export declare class CodemirrorModule {}
