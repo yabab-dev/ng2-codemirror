@@ -15,7 +15,7 @@ import CodeMirror from 'codemirror';
 /**
  * CodeMirror component
  * Usage :
- * <codemirror [(ngModel)]="data" [config]="{...}"></ckeditor>
+ * <codemirror [(ngModel)]="data" [config]="{...}"></codemirror>
  */
 @Component({
   selector: 'codemirror',
@@ -33,18 +33,20 @@ export class CodemirrorComponent {
   @Input() config;
 
   @Output() change = new EventEmitter();
-  editor;
+
   @ViewChild('host') host;
 
-  _value = '';
   @Output() instance = null;
+
+  _value = '';
 
   /**
    * Constructor
    */
   constructor(){}
 
-  get value(): any { return this._value; };
+  get value() { return this._value; };
+
   @Input() set value(v) {
     if (v !== this._value) {
       this._value = v;
@@ -72,6 +74,7 @@ export class CodemirrorComponent {
    */
   codemirrorInit(config){
     this.instance = CodeMirror.fromTextArea(this.host.nativeElement, config);
+    this.instance.setValue(this._value);
     this.instance.on('change', () => {
       this.updateValue(this.instance.getValue());
     });
