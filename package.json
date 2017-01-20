@@ -21,6 +21,9 @@
     "url": "https://github.com/chymz/ng2-codemirror/issues"
   },
   "homepage": "https://github.com/chymz/ng2-codemirror#readme",
+  "dependencies": {
+    "codemirror": "^5.22.2"
+  },
   "devDependencies": {
     "babel-cli": "^6.4.0",
     "babel-plugin-angular2-annotations": "^5.0.0",
