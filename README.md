@@ -42,7 +42,13 @@ import { Component } from 'angular2/core';
 
 @Component({
   selector: 'sample',
-  template: `<codemirror [(ngModel)]="code" [config]="{...}"></codemirror>`
+  template: `
+    <codemirror [(ngModel)]="code"
+      [config]="{...}"
+      (focus)="onFocus()"
+      (blur)="onBlur()">
+    </codemirror>
+  `
 })
 export class Sample{
   constructor(){
