@@ -31,6 +31,8 @@ export class CodemirrorComponent {
 
   @Input() config;
   @Output() change = new EventEmitter();
+  @Output() focus = new EventEmitter();
+  @Output() blur = new EventEmitter();
 
   @ViewChild('host') host;
 
@@ -73,8 +75,17 @@ export class CodemirrorComponent {
   codemirrorInit(config){
     this.instance = CodeMirror.fromTextArea(this.host.nativeElement, config);
     this.instance.setValue(this._value);
+
     this.instance.on('change', () => {
       this.updateValue(this.instance.getValue());
+    });
+
+    this.instance.on('focus', () => {
+      this.focus.emit();
+    });
+
+    this.instance.on('blur', () => {
+      this.blur.emit();
     });
   }
 
