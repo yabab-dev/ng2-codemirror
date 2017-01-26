@@ -94,7 +94,6 @@ export class CodemirrorComponent {
    */
   updateValue(value){
     this.value = value;
-    this.onChange(value);
     this.onTouched();
     this.change.emit(value);
   }
