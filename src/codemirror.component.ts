@@ -1,6 +1,5 @@
 // Imports
 import {
-  NgModule,
   Component,
   Input,
   Output,
@@ -10,7 +9,7 @@ import {
   forwardRef
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import CodeMirror from 'codemirror';
+import * as CodeMirror from 'codemirror';
 
 /**
  * CodeMirror component
@@ -31,7 +30,6 @@ import CodeMirror from 'codemirror';
 export class CodemirrorComponent {
 
   @Input() config;
-
   @Output() change = new EventEmitter();
 
   @ViewChild('host') host;
@@ -104,16 +102,3 @@ export class CodemirrorComponent {
   registerOnChange(fn){this.onChange = fn;}
   registerOnTouched(fn){this.onTouched = fn;}
 }
-
-/**
- * CodemirrorModule
- */
-@NgModule({
-  declarations: [
-    CodemirrorComponent,
-  ],
-  exports: [
-    CodemirrorComponent,
-  ]
-})
-export class CodemirrorModule{}
