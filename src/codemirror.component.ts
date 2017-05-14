@@ -6,7 +6,9 @@ import {
   ElementRef,
   ViewChild,
   EventEmitter,
-  forwardRef
+  forwardRef,
+  AfterViewInit,
+  OnDestroy,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import * as CodeMirror from 'codemirror';
@@ -27,7 +29,7 @@ import * as CodeMirror from 'codemirror';
   ],
   template: `<textarea #host></textarea>`,
 })
-export class CodemirrorComponent {
+export class CodemirrorComponent implements AfterViewInit, OnDestroy {
 
   @Input() config;
   @Output() change = new EventEmitter();
