@@ -1,6 +1,6 @@
-# Angular2 - Codemirror component
+# Angular - Codemirror component
 
-Use the [CodeMirror (5.x)](http://codemirror.net/) code editor in your Angular2 application.
+Use the [CodeMirror (5.x)](http://codemirror.net/) code editor in your Angular application.
 
 **Demo** : https://embed.plnkr.co/8e9gxss9u10VeFrv29Zt/
 

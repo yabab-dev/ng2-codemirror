@@ -43,9 +43,9 @@ export class CodemirrorComponent {
   /**
    * Constructor
    */
-  constructor(){}
+  constructor() {}
 
-  get value() { return this._value; };
+  get value() { return this._value; }
 
   @Input() set value(v) {
     if (v !== this._value) {
@@ -57,14 +57,14 @@ export class CodemirrorComponent {
   /**
    * On component destroy
    */
-  ngOnDestroy(){
+  ngOnDestroy() {
 
   }
 
   /**
    * On component view init
    */
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     this.config = this.config || {};
     this.codemirrorInit(this.config);
   }
@@ -72,7 +72,7 @@ export class CodemirrorComponent {
   /**
    * Initialize codemirror
    */
-  codemirrorInit(config){
+  codemirrorInit(config) {
     this.instance = CodeMirror.fromTextArea(this.host.nativeElement, config);
     this.instance.setValue(this._value);
 
@@ -92,7 +92,7 @@ export class CodemirrorComponent {
   /**
    * Value update process
    */
-  updateValue(value){
+  updateValue(value) {
     this.value = value;
     this.onTouched();
     this.change.emit(value);
@@ -101,14 +101,14 @@ export class CodemirrorComponent {
   /**
    * Implements ControlValueAccessor
    */
-  writeValue(value){
+  writeValue(value) {
     this._value = value || '';
     if (this.instance) {
       this.instance.setValue(this._value);
     }
   }
-  onChange(_){}
-  onTouched(){}
-  registerOnChange(fn){this.onChange = fn;}
-  registerOnTouched(fn){this.onTouched = fn;}
+  onChange(_) {}
+  onTouched() {}
+  registerOnChange(fn) { this.onChange = fn; }
+  registerOnTouched(fn) { this.onTouched = fn; }
 }

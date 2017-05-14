@@ -14,4 +14,4 @@ import { CodemirrorComponent } from './codemirror.component';
   ]
 })
 
-export class CodemirrorModule{}
+export class CodemirrorModule {}
