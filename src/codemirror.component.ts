@@ -12,6 +12,7 @@ import {
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import * as CodeMirror from 'codemirror';
+import {InitEvent} from "./init_event";
 
 /**
  * CodeMirror component
@@ -35,10 +36,11 @@ export class CodemirrorComponent implements AfterViewInit, OnDestroy {
   @Output() change = new EventEmitter();
   @Output() focus = new EventEmitter();
   @Output() blur = new EventEmitter();
+  @Output() init = new EventEmitter<InitEvent>();
 
   @ViewChild('host') host;
 
-  @Output() instance = null;
+  instance: CodeMirror.Editor = null;
 
   _value = '';
 
@@ -89,6 +91,8 @@ export class CodemirrorComponent implements AfterViewInit, OnDestroy {
     this.instance.on('blur', () => {
       this.blur.emit();
     });
+
+    this.init.emit(new InitEvent(this.instance));
   }
 
   /**
