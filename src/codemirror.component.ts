@@ -35,7 +35,8 @@ export class CodemirrorComponent implements AfterViewInit, OnDestroy {
   @Output() change = new EventEmitter();
   @Output() focus = new EventEmitter();
   @Output() blur = new EventEmitter();
-
+  @Output() cursorActivity = new EventEmitter();
+ 
   @ViewChild('host') host;
 
   @Output() instance = null;
@@ -82,12 +83,16 @@ export class CodemirrorComponent implements AfterViewInit, OnDestroy {
       this.updateValue(this.instance.getValue());
     });
 
-    this.instance.on('focus', () => {
-      this.focus.emit();
+    this.instance.on('focus', (instance, event) => {
+      this.focus.emit({instance, event});
     });
 
-    this.instance.on('blur', () => {
-      this.blur.emit();
+    this.instance.on('cursorActivity', (instance) => {
+      this.cursorActivity.emit({instance});
+    });
+
+    this.instance.on('blur', (instance, event) => {
+      this.blur.emit({instance, event});
     });
   }
 
