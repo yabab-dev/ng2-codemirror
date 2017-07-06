@@ -9,6 +9,7 @@ import {
   forwardRef,
   AfterViewInit,
   OnDestroy,
+  NgZone
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import * as CodeMirror from 'codemirror';
@@ -46,7 +47,7 @@ export class CodemirrorComponent implements AfterViewInit, OnDestroy {
   /**
    * Constructor
    */
-  constructor() {}
+  constructor(private _zone: NgZone) {}
 
   get value() { return this._value; }
 
@@ -76,8 +77,10 @@ export class CodemirrorComponent implements AfterViewInit, OnDestroy {
    * Initialize codemirror
    */
   codemirrorInit(config) {
-    this.instance = CodeMirror.fromTextArea(this.host.nativeElement, config);
-    this.instance.setValue(this._value);
+    this._zone.runOutsideAngular(() => {
+      this.instance = CodeMirror.fromTextArea(this.host.nativeElement, config);
+      this.instance.setValue(this._value);
+    });
 
     this.instance.on('change', () => {
       this.updateValue(this.instance.getValue());
