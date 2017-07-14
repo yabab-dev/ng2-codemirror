@@ -76,6 +76,62 @@ export class CodemirrorComponent implements AfterViewInit, OnDestroy {
    * Initialize codemirror
    */
   codemirrorInit(config) {
+    
+     /**
+      * startListening component
+      * 
+      * @param {any} cm 
+      * @param {any} state 
+      */
+     function startListening(cm, state) {
+      function check() {
+        if (cm.display.wrapper.offsetHeight) {
+          stopListening(cm, state)
+          if (cm.display.lastWrapHeight != cm.display.wrapper.clientHeight)
+            cm.refresh()
+        } else {
+          state.timeout = setTimeout(check, state.delay)
+        }
+      }
+
+      state.timeout = setTimeout(check, state.delay)
+
+      state.hurry = () => {
+        clearTimeout(state.timeout)
+        state.timeout = setTimeout(check, 50)
+      }
+      CodeMirror.on(window, "mouseup", state.hurry)
+      CodeMirror.on(window, "keyup", state.hurry)
+    }
+
+
+     /**
+      * stopListening component
+      * 
+      * @param {any} _cm 
+      * @param {any} state 
+      */
+     function stopListening(_cm, state) {
+      clearTimeout(state.timeout)
+      CodeMirror.off(window, "mouseup", state.hurry)
+      CodeMirror.off(window, "keyup", state.hurry)
+    } 
+
+    /**
+     * 
+     * Definition option autoRefresh
+     *  
+     */
+    CodeMirror.defineOption("autoRefresh", false, (cm, val) => {
+      if (cm.state.autoRefresh) {
+        stopListening(cm, cm.state.autoRefresh)
+        cm.state.autoRefresh = null
+      }
+      if (val && cm.display.wrapper.offsetHeight == 0){
+        startListening(cm, cm.state.autoRefresh = {delay: val.delay || 250})
+      }
+    });    
+    
     this.instance = CodeMirror.fromTextArea(this.host.nativeElement, config);
     this.instance.setValue(this._value);
 
