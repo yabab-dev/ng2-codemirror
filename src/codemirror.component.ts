@@ -118,4 +118,7 @@ export class CodemirrorComponent implements AfterViewInit, OnDestroy {
   onTouched() {}
   registerOnChange(fn) { this.onChange = fn; }
   registerOnTouched(fn) { this.onTouched = fn; }
+  setDisabledState(isDisabled: boolean): void { 	  
+	this.instance.setOption('readOnly', isDisabled ? 'nocursor' : isDisabled);
+  }
 }
